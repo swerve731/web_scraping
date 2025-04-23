@@ -4,14 +4,14 @@ pub mod ebay;
 
 
 
-pub trait Scraper {
+pub trait ScraperUtils {
     fn search_url(term: String) -> String;
 }
 // im using traits so later i can have a function like search_products(term) 
 //and it will asynchronously get products from all the sites that have a product scraper
 #[async_trait::async_trait]
-pub trait ProductScraper {
-    async fn search_scrape(term: String, limit: usize) -> crate::Result<Vec<Product>>;
+pub trait ProductScraping {
+    async fn product_search_scrape(term: String, limit: usize) -> crate::Result<Vec<Product>>;
 }
 
 #[derive(Debug)]

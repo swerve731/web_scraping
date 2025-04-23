@@ -3,12 +3,12 @@ use scraper::{Html, Selector};
 
 use crate::default_client;
 
-use super::{Product, ProductScraper, Scraper};
+use super::{Product, ProductScraping, ScraperUtils};
 
 
 pub struct StockxScraper;
 
-impl Scraper for StockxScraper {
+impl ScraperUtils for StockxScraper {
     // this is the url for the search form on stockX
     fn search_url(term: String) -> String {
         format!("https://stockx.com/search?s={}", term)
@@ -16,8 +16,8 @@ impl Scraper for StockxScraper {
 }
 
 #[async_trait::async_trait]
-impl ProductScraper for StockxScraper {
-    async fn search_scrape(term: String, limit: usize) -> crate::Result<Vec<Product>> {
+impl ProductScraping for StockxScraper {
+    async fn product_search_scrape(term: String, limit: usize) -> crate::Result<Vec<Product>> {
         let c = default_client().await?;
 
         c.goto(Self::search_url(term).as_str()).await?;
