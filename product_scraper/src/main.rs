@@ -1,8 +1,6 @@
-use fantoccini::{ClientBuilder, Locator};
 use product_scraper::scrapers::ProductScraper;
-use serde_json::json;
 use product_scraper::error::Result;
-use product_scraper::{default_client, scrapers};
+use product_scraper::scrapers;
 
 
 

@@ -2,13 +2,13 @@ pub mod goat;
 pub mod stockx;
 pub mod ebay;
 
-use crate::error::Error;
 
 
 pub trait Scraper {
     fn search_url(term: String) -> String;
 }
-
+// im using traits so later i can have a function like search_products(term) 
+//and it will asynchronously get products from all the sites that have a product scraper
 #[async_trait::async_trait]
 pub trait ProductScraper {
     async fn search_scrape(term: String, limit: usize) -> crate::Result<Vec<Product>>;

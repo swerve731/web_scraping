@@ -1,16 +1,15 @@
 use fantoccini::Locator;
-use scraper::{html, selector, Html, Selector};
+use scraper::{Html, Selector};
 
 use crate::default_client;
 
 use super::{Product, ProductScraper, Scraper};
 
-use crate::error::Error;
-
 
 pub struct StockxScraper;
 
 impl Scraper for StockxScraper {
+    // this is the url for the search form on stockX
     fn search_url(term: String) -> String {
         format!("https://stockx.com/search?s={}", term)
     }
@@ -47,11 +46,13 @@ impl ProductScraper for StockxScraper {
                 .ok_or(crate::error::Error::NotFound(format!("StockX price not found for element: {:?}", raw_element)))?
                 .text()
                 .collect::<String>();
-
+            // since stockX includes $ in the price text I remove it and parse it into a float 
             let parsed_price: f64 = price_string
                 .replace("$", "")
                 .parse()
-                .unwrap();
+                .map_err(|e| crate::error::Error::WrongDataType(format!("Could not parse the stockX price element: {:?}\n\n Parsing Error: {:?}", price_string, e)))?;
+
+            println!("{}", parsed_price);
             println!("{}", parsed_price);
 
 

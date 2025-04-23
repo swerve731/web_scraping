@@ -2,7 +2,7 @@
 #[derive(derive_more::From, Debug)]
 pub enum Error<'a> {
     NotFound(String),
-
+    WrongDataType(String),
     #[from]
     WebDriver(fantoccini::error::WebDriver),
 
