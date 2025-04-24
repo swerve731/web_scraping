@@ -71,6 +71,8 @@ impl ProductScraping for EbayScraper {
             if title != "Shop on eBay"{
                 products.push(Product::new(title, parsed_price));
 
+
+            } else {
                 // this doesnt count as a product
                 // add one to the limit since i use indexing and if the limit is 70 it should return 70 valid elements
                 limit+=1;

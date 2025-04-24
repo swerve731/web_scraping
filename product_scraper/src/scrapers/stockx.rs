@@ -26,6 +26,7 @@ impl ProductScraping for StockxScraper {
         let mut i = 0;
 
         let mut products = Vec::new();
+
         while product_elements.len() > i && i < limit{
             let raw_element = product_elements[i].html(true).await?;
             let html_element = Html::parse_fragment(&raw_element);
@@ -37,7 +38,6 @@ impl ProductScraping for StockxScraper {
                 .text()
                 .collect::<String>();
 
-            println!("{}", title);
             
             let price_selector = Selector::parse(r#"p[data-testid="product-tile-lowest-ask-amount"]"#)?;
             
@@ -52,7 +52,6 @@ impl ProductScraping for StockxScraper {
                 .parse()
                 .map_err(|e| crate::error::Error::WrongDataType(format!("Could not parse the stockX price element: {:?}\n\n Parsing Error: {:?}", price_string, e)))?;
 
-            println!("{}", parsed_price);
 
 
             products.push(Product::new(title, parsed_price));
