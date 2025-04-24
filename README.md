@@ -31,7 +31,7 @@ Before you can run this project, make sure you have the following installed and 
 
 1.  Clone this repository (or navigate to the project directory if you already have it):
     ```bash
-    # git clone https://github.com/swerve731/web_scraping/edit/main/README.md # If applicable
+    # git clone https://github.com/swerve731/web_scraping/
     cd product_scraper
     ```
 
