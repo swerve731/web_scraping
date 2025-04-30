@@ -1,6 +1,6 @@
 # Product Scraper
 
-A web scraping tool built with Rust that fetches product information (title and price) from StockX and eBay based on a search term. It uses `fantoccini` for browser automation to handle dynamic content and `scraper` for parsing the HTML structure. Some other features that could be added is item streaming that returns products live as they are scraped and image grabbing.
+A web scraping tool built with Rust that fetches product information (title and price) from StockX and eBay based on a search term. It uses `fantoccini` for browser automation to handle dynamic content and `scraper` for parsing the HTML structure.
 
 ## Features
 
@@ -34,6 +34,11 @@ Before you can run this project, make sure you have the following installed and 
     # git clone https://github.com/swerve731/web_scraping/
     cd product_scraper
     ```
+
+## Future features
+* Stream responses one by one as they are grabbed
+* Grab images
+* Save in a DB
 
 
 To run the scraper, use the `cargo run` command followed by `--` and your desired search term.
